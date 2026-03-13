@@ -22,6 +22,15 @@ Screenshot URLs to PNG/JPEG/WebP, generate PDFs, extract metadata & OG tags, ren
 - **Postman Collection:** [screenshot-postman-collection.json](./screenshot-postman-collection.json)
 - **Free tier:** 20 screenshots/day
 
+### Text-to-Speech API
+High-quality text-to-speech with 400+ voices in 100+ languages. Word-level timestamps, adjustable speed and pitch.
+
+- **RapidAPI:** [Text-to-Speech API](https://rapidapi.com/louismichalot/api/text-to-speech-api)
+- **npm:** [`rapidapi-tts`](https://www.npmjs.com/package/rapidapi-tts) — `npm install rapidapi-tts`
+- **PyPI:** [`text-to-speech-api`](https://pypi.org/project/text-to-speech-api/) — `pip install text-to-speech-api`
+- **Postman Collection:** [tts-postman-collection.json](./tts-postman-collection.json)
+- **Free tier:** 50 requests/day
+
 ## Code Examples
 
 Ready-to-run examples in Python, Node.js, and cURL. Replace `YOUR_RAPIDAPI_KEY` with your key and go.
@@ -125,6 +134,27 @@ api = ScreenshotAPI("YOUR_RAPIDAPI_KEY")
 img = api.screenshot("https://github.com", format="png", full_page=True)
 ```
 
+### Text-to-Speech API
+
+```bash
+npm install rapidapi-tts           # Node.js 18+
+pip install text-to-speech-api     # Python 3.8+
+```
+
+```javascript
+// Node.js
+import TTSAPI from 'rapidapi-tts';
+const api = new TTSAPI('YOUR_RAPIDAPI_KEY');
+const audio = await api.tts({ text: 'Hello world!', voice: 'en-US-AriaNeural' });
+```
+
+```python
+# Python
+from tts_api import TTSAPI
+api = TTSAPI("YOUR_RAPIDAPI_KEY")
+audio = api.tts("Hello world!", voice="en-US-AriaNeural")
+```
+
 ## Quick Start
 
 ### Import in Postman
@@ -169,4 +199,13 @@ curl -o screenshot.png \
   -H "X-RapidAPI-Key: YOUR_KEY" \
   -H "X-RapidAPI-Host: screenshot-pdf-api.p.rapidapi.com" \
   "https://screenshot-pdf-api.p.rapidapi.com/v1/screenshot?url=https://github.com"
+
+# Text-to-Speech
+curl -o speech.mp3 \
+  -X POST \
+  -H "X-RapidAPI-Key: YOUR_KEY" \
+  -H "X-RapidAPI-Host: text-to-speech-api.p.rapidapi.com" \
+  -H "Content-Type: application/json" \
+  -d '{"text": "Hello world!", "voice": "en-US-AriaNeural", "format": "mp3"}' \
+  "https://text-to-speech-api.p.rapidapi.com/v1/tts"
 ```
