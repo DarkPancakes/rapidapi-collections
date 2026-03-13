@@ -1,0 +1,176 @@
+{
+  "info": {
+    "name": "Screenshot & PDF API",
+    "description": "Screenshot URLs, generate PDFs, extract metadata & OG tags, render HTML to images. Powered by headless Chromium.\n\nGet your API key at: https://rapidapi.com/louismichalot/api/screenshot-pdf-api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://screenshot-pdf-api.p.rapidapi.com"
+    },
+    {
+      "key": "rapidApiKey",
+      "value": "YOUR_RAPIDAPI_KEY"
+    },
+    {
+      "key": "rapidApiHost",
+      "value": "screenshot-pdf-api.p.rapidapi.com"
+    }
+  ],
+  "item": [
+    {
+      "name": "Free Tier",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/health",
+            "header": [
+              { "key": "X-RapidAPI-Key", "value": "{{rapidApiKey}}" },
+              { "key": "X-RapidAPI-Host", "value": "{{rapidApiHost}}" }
+            ],
+            "description": "API status, browser health, concurrent queue depth."
+          }
+        },
+        {
+          "name": "Screenshot URL (PNG)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/v1/screenshot?url=https://github.com&width=1280&height=800&format=png",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "screenshot"],
+              "query": [
+                { "key": "url", "value": "https://github.com", "description": "URL to capture" },
+                { "key": "width", "value": "1280", "description": "Viewport width (Free max: 800)" },
+                { "key": "height", "value": "800", "description": "Viewport height" },
+                { "key": "format", "value": "png", "description": "png, jpeg, webp" },
+                { "key": "quality", "value": "85", "description": "JPEG/WebP quality 1-100", "disabled": true },
+                { "key": "full_page", "value": "false", "description": "Capture full scrollable page", "disabled": true },
+                { "key": "delay", "value": "0", "description": "Wait N seconds (0-5)", "disabled": true },
+                { "key": "selector", "value": "", "description": "CSS selector to capture", "disabled": true }
+              ]
+            },
+            "header": [
+              { "key": "X-RapidAPI-Key", "value": "{{rapidApiKey}}" },
+              { "key": "X-RapidAPI-Host", "value": "{{rapidApiHost}}" }
+            ],
+            "description": "Screenshot any URL as PNG, JPEG or WebP."
+          }
+        },
+        {
+          "name": "Screenshot URL (JPEG)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/screenshot?url=https://news.ycombinator.com&format=jpeg&quality=90",
+            "header": [
+              { "key": "X-RapidAPI-Key", "value": "{{rapidApiKey}}" },
+              { "key": "X-RapidAPI-Host", "value": "{{rapidApiHost}}" }
+            ],
+            "description": "Screenshot as JPEG with custom quality."
+          }
+        },
+        {
+          "name": "Screenshot Full Page",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/screenshot?url=https://en.wikipedia.org/wiki/API&full_page=true&format=png",
+            "header": [
+              { "key": "X-RapidAPI-Key", "value": "{{rapidApiKey}}" },
+              { "key": "X-RapidAPI-Host", "value": "{{rapidApiHost}}" }
+            ],
+            "description": "Capture the entire scrollable page."
+          }
+        },
+        {
+          "name": "Screenshot with Delay",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/screenshot?url=https://github.com&delay=2&format=png",
+            "header": [
+              { "key": "X-RapidAPI-Key", "value": "{{rapidApiKey}}" },
+              { "key": "X-RapidAPI-Host", "value": "{{rapidApiHost}}" }
+            ],
+            "description": "Wait 2 seconds for dynamic content to load before capture."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Basic Tier",
+      "item": [
+        {
+          "name": "Generate PDF (A4)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/v1/pdf?url=https://github.com&format=A4&margin=normal",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "pdf"],
+              "query": [
+                { "key": "url", "value": "https://github.com", "description": "URL to convert" },
+                { "key": "format", "value": "A4", "description": "A4, Letter, Legal" },
+                { "key": "landscape", "value": "false", "description": "Landscape orientation", "disabled": true },
+                { "key": "print_background", "value": "true", "description": "Include CSS backgrounds", "disabled": true },
+                { "key": "margin", "value": "normal", "description": "none, small, normal" }
+              ]
+            },
+            "header": [
+              { "key": "X-RapidAPI-Key", "value": "{{rapidApiKey}}" },
+              { "key": "X-RapidAPI-Host", "value": "{{rapidApiHost}}" }
+            ],
+            "description": "Generate PDF from any URL."
+          }
+        },
+        {
+          "name": "Generate PDF (Landscape, no margins)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/pdf?url=https://github.com&format=Letter&landscape=true&margin=none",
+            "header": [
+              { "key": "X-RapidAPI-Key", "value": "{{rapidApiKey}}" },
+              { "key": "X-RapidAPI-Host", "value": "{{rapidApiHost}}" }
+            ],
+            "description": "Landscape PDF with no margins."
+          }
+        },
+        {
+          "name": "Extract Metadata",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/metadata?url=https://github.com",
+            "header": [
+              { "key": "X-RapidAPI-Key", "value": "{{rapidApiKey}}" },
+              { "key": "X-RapidAPI-Host", "value": "{{rapidApiHost}}" }
+            ],
+            "description": "Extract title, description, OG tags, Twitter Card, favicon, JSON-LD, content analysis and all meta tags."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pro Tier",
+      "item": [
+        {
+          "name": "HTML to Image",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/screenshot/html",
+            "header": [
+              { "key": "X-RapidAPI-Key", "value": "{{rapidApiKey}}" },
+              { "key": "X-RapidAPI-Host", "value": "{{rapidApiHost}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"html\": \"<div style='padding:40px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;font-family:Arial;border-radius:16px'><h1 style='font-size:48px;margin:0'>Hello World</h1><p style='font-size:20px;opacity:0.8'>Generated with Screenshot & PDF API</p></div>\",\n  \"width\": 800,\n  \"height\": 400,\n  \"format\": \"png\"\n}"
+            },
+            "description": "Render custom HTML/CSS to an image. Great for generating social cards, banners, and OG images."
+          }
+        }
+      ]
+    }
+  ]
+}

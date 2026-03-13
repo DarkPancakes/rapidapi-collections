@@ -1,0 +1,187 @@
+{
+  "info": {
+    "name": "Sirius Prediction Market API",
+    "description": "Real-time prediction market data from 28+ cross-platform sources. Live Polymarket odds, algorithmic trading signals, sentiment analysis, sports odds, weather forecasts and more.\n\nGet your API key at: https://rapidapi.com/louismichalot/api/sirius-prediction-market-api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://sirius-prediction-market-api.p.rapidapi.com"
+    },
+    {
+      "key": "rapidApiKey",
+      "value": "YOUR_RAPIDAPI_KEY"
+    },
+    {
+      "key": "rapidApiHost",
+      "value": "sirius-prediction-market-api.p.rapidapi.com"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "X-RapidAPI-Key" },
+      { "key": "value", "value": "{{rapidApiKey}}" },
+      { "key": "in", "value": "header" }
+    ]
+  },
+  "item": [
+    {
+      "name": "Free Tier",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/health",
+            "header": [
+              { "key": "X-RapidAPI-Key", "value": "{{rapidApiKey}}" },
+              { "key": "X-RapidAPI-Host", "value": "{{rapidApiHost}}" }
+            ],
+            "description": "Check API status, browser health, and queue depth. No auth required."
+          }
+        },
+        {
+          "name": "Get Markets",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/markets",
+            "header": [
+              { "key": "X-RapidAPI-Key", "value": "{{rapidApiKey}}" },
+              { "key": "X-RapidAPI-Host", "value": "{{rapidApiHost}}" }
+            ],
+            "description": "Get all active Polymarket prediction markets with current odds."
+          }
+        },
+        {
+          "name": "Get Signals",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/v1/signals?limit=50",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "signals"],
+              "query": [
+                { "key": "limit", "value": "50", "description": "Max signals (1-500)" },
+                { "key": "layer", "value": "", "description": "Filter: L1, L3, L4, L5, L6", "disabled": true },
+                { "key": "min_gap", "value": "", "description": "Min gap 0-1", "disabled": true }
+              ]
+            },
+            "header": [
+              { "key": "X-RapidAPI-Key", "value": "{{rapidApiKey}}" },
+              { "key": "X-RapidAPI-Host", "value": "{{rapidApiHost}}" }
+            ],
+            "description": "Trading signals from all 28+ sources. Free tier has 15-min delay."
+          }
+        },
+        {
+          "name": "Get Signals History",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/signals/history",
+            "header": [
+              { "key": "X-RapidAPI-Key", "value": "{{rapidApiKey}}" },
+              { "key": "X-RapidAPI-Host", "value": "{{rapidApiHost}}" }
+            ],
+            "description": "Historical signals and trade results."
+          }
+        },
+        {
+          "name": "Get Sentiment",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/sentiment",
+            "header": [
+              { "key": "X-RapidAPI-Key", "value": "{{rapidApiKey}}" },
+              { "key": "X-RapidAPI-Host", "value": "{{rapidApiHost}}" }
+            ],
+            "description": "Crypto Fear & Greed index, Binance long/short ratios, market regime."
+          }
+        },
+        {
+          "name": "Get Sports Odds",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/sports",
+            "header": [
+              { "key": "X-RapidAPI-Key", "value": "{{rapidApiKey}}" },
+              { "key": "X-RapidAPI-Host", "value": "{{rapidApiHost}}" }
+            ],
+            "description": "Live sports odds from ESPN + Kalshi (NBA, NFL, NHL, NCAA, soccer)."
+          }
+        },
+        {
+          "name": "Get Weather",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/weather",
+            "header": [
+              { "key": "X-RapidAPI-Key", "value": "{{rapidApiKey}}" },
+              { "key": "X-RapidAPI-Host", "value": "{{rapidApiHost}}" }
+            ],
+            "description": "Weather forecasts matched to prediction markets (NOAA/NHC/USGS)."
+          }
+        },
+        {
+          "name": "Get Odds Comparison",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/odds",
+            "header": [
+              { "key": "X-RapidAPI-Key", "value": "{{rapidApiKey}}" },
+              { "key": "X-RapidAPI-Host", "value": "{{rapidApiHost}}" }
+            ],
+            "description": "Cross-platform odds comparison (Polymarket vs Kalshi vs PredictIt)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Basic Tier",
+      "item": [
+        {
+          "name": "Get Performance",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/performance",
+            "header": [
+              { "key": "X-RapidAPI-Key", "value": "{{rapidApiKey}}" },
+              { "key": "X-RapidAPI-Host", "value": "{{rapidApiHost}}" }
+            ],
+            "description": "Bot trading track record — win rate, P&L, stats by layer."
+          }
+        },
+        {
+          "name": "Get Trades",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/trades",
+            "header": [
+              { "key": "X-RapidAPI-Key", "value": "{{rapidApiKey}}" },
+              { "key": "X-RapidAPI-Host", "value": "{{rapidApiHost}}" }
+            ],
+            "description": "Recent trade history with entry/exit prices and P&L."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pro Tier",
+      "item": [
+        {
+          "name": "Get AI Brain",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/brain",
+            "header": [
+              { "key": "X-RapidAPI-Key", "value": "{{rapidApiKey}}" },
+              { "key": "X-RapidAPI-Host", "value": "{{rapidApiHost}}" }
+            ],
+            "description": "AI reasoning engine — current decisions, disabled assets, reasoning."
+          }
+        }
+      ]
+    }
+  ]
+}
