@@ -27,7 +27,7 @@ High-quality text-to-speech with 320+ neural voices in 75+ languages. SSML suppo
 
 - **RapidAPI:** [Text-to-Speech API](https://rapidapi.com/louismichalot/api/text-to-speech-api)
 - **npm:** [`rapidapi-tts`](https://www.npmjs.com/package/rapidapi-tts) — `npm install rapidapi-tts`
-- **PyPI:** [`text-to-speech-api`](https://pypi.org/project/text-to-speech-api/) — `pip install text-to-speech-api`
+- **PyPI:** [`rapidapi-tts`](https://pypi.org/project/rapidapi-tts/) — `pip install rapidapi-tts`
 - **Postman Collection:** [tts-postman-collection.json](./tts-postman-collection.json)
 - **Free tier:** 50 requests/day
 
@@ -138,7 +138,7 @@ img = api.screenshot("https://github.com", device="iphone-14", dark_mode=True)
 
 ```bash
 npm install rapidapi-tts           # Node.js 18+
-pip install text-to-speech-api     # Python 3.8+
+pip install rapidapi-tts            # Python 3.8+
 ```
 
 ```javascript
